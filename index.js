@@ -45,4 +45,4 @@ app.get('/blogs/:id', blogController.getBlogsById);
 app.post('/blogs', blogController.createBlog);
 
 
-app.delete('/blogs/id/:id', blogController.deleteBlog);
+app.delete('/blogs/:id', blogController.deleteBlog);
