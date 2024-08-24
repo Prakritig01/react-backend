@@ -2,6 +2,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const BlogPost = require("./models/BlogPost");
+const cors = require("cors");
+
 // import "./index.css";
 
 const USER_NAME = "prakriti_01";
@@ -10,6 +12,8 @@ const DB_NAME = "ReactBackend";
 const DB_URI = `mongodb+srv://${USER_NAME}:${PASSWORD}@merncluster.khab0.mongodb.net/${DB_NAME}?retryWrites=true&w=majority&appName=mernCluster`;
 const PORT = 3020;
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 mongoose
@@ -43,7 +47,7 @@ app.get('/blogs', (req, res) => {
 });
 
 
-app.get('/blogs/:id', (req, res) => {
+app.get('/blogs/id/:id', (req, res) => {
   const blogId = req.params.id;
   console.log(blogId);
   
@@ -75,7 +79,7 @@ app.post('/blogs', (req, res) => {
     });
 });
 
-app.delete('/blogs/:id', (req, res) => {
+app.delete('/blogs/id/:id', (req, res) => {
   const blogId = req.params.id;
   BlogPost.findByIdAndDelete(blogId)
       .then((result) => {
